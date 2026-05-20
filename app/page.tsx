@@ -40,6 +40,7 @@ export default function Home() {
       >
         Skip to content
       </a>
+
       <Header />
       <main id="main" className="flex flex-col">
         <Reveal variant="fade">
