@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { IconBadge } from "@/components/ui/IconBadge";
 
 const FEATURES = [
   {
@@ -25,13 +26,13 @@ export function Features() {
         {FEATURES.map((f) => (
           <article
             key={f.title}
-            className="bg-black flex flex-col items-start gap-md rounded-lg p-xl md:p-xxl"
+            className="bg-surface flex flex-col items-start gap-md rounded-lg p-xl md:p-xxl"
           >
-            <span className="inline-flex items-center justify-center p-xs">
-              <Image src={f.icon} alt="" width={28} height={28} aria-hidden="true" className="invert" />
-            </span>
-            <h2 className="text-h1 text-white">{f.title}</h2>
-            <p className="text-white text-[18px] leading-[1.3] md:text-[24px] md:leading-[28px]">
+            <IconBadge>
+              <Image src={f.icon} alt="" width={28} height={28} aria-hidden="true" />
+            </IconBadge>
+            <h2 className="text-h1 text-text-heading">{f.title}</h2>
+            <p className="text-text-primary text-[18px] leading-[1.3] md:text-[24px] md:leading-[28px]">
               {f.body}
             </p>
           </article>
