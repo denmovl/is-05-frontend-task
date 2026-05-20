@@ -1,68 +1,126 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — keep this file in sync with docs/DESIGN.md.
+ * Design tokens — source of truth: docs/DESIGN.md (Stitch DESIGN.md format).
  *
- * 1. Define raw tokens on :root as CSS variables.
- * 2. Bridge them into Tailwind v4 via @theme inline so the agent can use
- *    `bg-<token>`, `rounded-<token>`, `text-<token>` etc.
+ * 1. Raw tokens live on :root as CSS variables.
+ * 2. @theme inline bridges them into Tailwind v4 so utilities like
+ *    `bg-background`, `text-text-heading`, `rounded-lg`, `p-xl`,
+ *    `text-display` resolve.
  *
- * The starter ships with neutral defaults — replace them with the tokens
- * extracted from your Figma file before implementing sections.
+ * Keep names and values aligned with the YAML front matter of docs/DESIGN.md.
  */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --color-background: #171717;
+  --color-surface: #262626;
+  --color-surface-hover: #262626;
+  --color-text-heading: #f5f5f5;
+  --color-text-primary: #fafafa;
+  --color-text-muted: #a3a3a3;
+  --color-icon: #d4d4d4;
+  --color-border: #737373;
+  --color-primary: #ddd6fe;
+  --color-on-primary: #4c1d95;
+  --color-warning: #f59e0b;
+  --color-white: #ffffff;
+  --color-black: #000000;
 
-  /* Replace these with your own tokens from docs/DESIGN.md */
-  --color-brand-primary: #0000ff;
-  --color-brand-text: #111111;
-  --color-brand-muted: #444444;
-  --color-brand-inverse: #ffffff;
-  --color-brand-surface: #ffffff;
-  --color-brand-surface-dark: #0a0a0a;
-  --color-brand-border: #e5e5e5;
+  /* Aliases used by the placeholder app/page.tsx until it is replaced
+     with real section components. */
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
 
-  --radius-brand-button: 12px;
-  --radius-brand-input: 12px;
-  --radius-brand-card: 16px;
+  /* Radius */
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 360px;
 
-  --space-brand-control-x: 24px;
-  --space-brand-control-y: 12px;
+  /* Spacing */
+  --spacing-half: 2px;
+  --spacing-xxxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-base: 20px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xhuge: 128px;
+  --spacing-xxxhuge: 192px;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-background: var(--color-background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-heading: var(--color-text-heading);
+  --color-text-muted: var(--color-text-muted);
+  --color-icon: var(--color-icon);
+  --color-border: var(--color-border);
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+  --color-warning: var(--color-warning);
+  --color-white: var(--color-white);
+  --color-black: var(--color-black);
 
-  --color-brand-primary: var(--color-brand-primary);
-  --color-brand-text: var(--color-brand-text);
-  --color-brand-muted: var(--color-brand-muted);
-  --color-brand-inverse: var(--color-brand-inverse);
-  --color-brand-surface: var(--color-brand-surface);
-  --color-brand-surface-dark: var(--color-brand-surface-dark);
-  --color-brand-border: var(--color-brand-border);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
 
-  --radius-brand-button: var(--radius-brand-button);
-  --radius-brand-input: var(--radius-brand-input);
-  --radius-brand-card: var(--radius-brand-card);
+  --spacing-half: var(--spacing-half);
+  --spacing-xxxs: var(--spacing-xxxs);
+  --spacing-xs: var(--spacing-xs);
+  --spacing-sm: var(--spacing-sm);
+  --spacing-md: var(--spacing-md);
+  --spacing-base: var(--spacing-base);
+  --spacing-lg: var(--spacing-lg);
+  --spacing-xl: var(--spacing-xl);
+  --spacing-xxl: var(--spacing-xxl);
+  --spacing-xhuge: var(--spacing-xhuge);
+  --spacing-xxxhuge: var(--spacing-xxxhuge);
 
-  --spacing-brand-control-x: var(--space-brand-control-x);
-  --spacing-brand-control-y: var(--space-brand-control-y);
+  /* Typography — composite modifiers generate text-<name> utilities that
+     set font-size, line-height, font-weight, and letter-spacing together. */
+  --text-display: 64px;
+  --text-display--line-height: 72px;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.01em;
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --text-h1: 38px;
+  --text-h1--line-height: 38px;
+  --text-h1--font-weight: 600;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --text-h3: 24px;
+  --text-h3--line-height: 32px;
+  --text-h3--font-weight: 600;
+
+  --text-h5: 16px;
+  --text-h5--line-height: 24px;
+  --text-h5--font-weight: 600;
+
+  --text-lg-strong: 16px;
+  --text-lg-strong--line-height: 16px;
+  --text-lg-strong--font-weight: 500;
+  --text-lg-strong--letter-spacing: 2px;
+
+  --text-base-strong: 14px;
+  --text-base-strong--line-height: 14px;
+  --text-base-strong--font-weight: 500;
+  --text-base-strong--letter-spacing: 2px;
+
+  --text-base-normal: 14px;
+  --text-base-normal--line-height: 14px;
+  --text-base-normal--font-weight: 400;
+  --text-base-normal--letter-spacing: 2px;
+
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
 }

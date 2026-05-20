@@ -6,6 +6,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 <!-- END:nextjs-agent-rules -->
 
+Use prd from './docs/prd.md';
+
 # AGENTS.md
 
 ## Project Overview
