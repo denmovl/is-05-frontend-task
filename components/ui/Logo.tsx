@@ -1,24 +1,45 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 export type LogoProps = {
   className?: string;
+  size?: "sm" | "md";
   label?: string;
 };
 
-// Placeholder wordmark. Replace body with the SVG extracted from the Figma
-// footer Logo node (file FPM18t2oV8BwC8ztYfngcn, node 6:15657) once it lands
-// in /public. Inherits currentColor so it works on any surface.
-export function Logo({ className, label = "Rolando" }: LogoProps) {
+const sizes = {
+  sm: { mark: 28, text: "text-h5" },
+  md: { mark: 36, text: "text-h3" },
+} as const;
+
+export function Logo({ className, size = "md", label = "tian" }: LogoProps) {
+  const s = sizes[size];
   return (
     <span
       className={cn(
-        "font-sans text-h5 tracking-tight text-current",
+        "inline-flex items-center gap-xs text-text-heading",
         className,
       )}
       role="img"
       aria-label={label}
     >
-      Rolando
+      <Image
+        src="/logo.svg"
+        alt=""
+        width={s.mark}
+        height={s.mark}
+        priority
+        aria-hidden="true"
+      />
+      <span
+        className={cn(
+          "font-sans font-semibold tracking-tight leading-none",
+          s.text,
+        )}
+        aria-hidden="true"
+      >
+        tian
+      </span>
     </span>
   );
 }

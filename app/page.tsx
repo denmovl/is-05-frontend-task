@@ -1,78 +1,77 @@
+import { Header } from "@/components/sections/Header";
+import { Hero } from "@/components/sections/Hero";
+import { Features } from "@/components/sections/Features";
+import { PopularCourses } from "@/components/sections/PopularCourses";
+import { PromoBanner } from "@/components/sections/PromoBanner";
+import { AlternatingFeature } from "@/components/sections/AlternatingFeature";
+import { Footer } from "@/components/sections/Footer";
+import { Reveal } from "@/components/ui/Reveal";
+
+const ALTERNATING = [
+  {
+    imageSide: "left" as const,
+    image: "/illustrations/computer.png",
+    imageAlt: "Retro computer with a course curriculum on screen",
+    title: "Explore topics",
+    body: "Dive deep into our diverse catalog featuring a curated selection of courses in the realms of arts and writing. Experience knowledge crafted by experts, designed to inspire and nurture your creative journey.",
+  },
+  {
+    imageSide: "right" as const,
+    image: "/illustrations/community.png",
+    imageAlt: "Diverse community of learners",
+    title: "Meet new Friends",
+    body: "Connect with our expansive network, match with like-minded peers, and learn code together",
+  },
+  {
+    imageSide: "left" as const,
+    image: "/illustrations/chat.png",
+    imageAlt: "Group chat between learners",
+    title: "Find",
+    body: "Connect with people around the world in a huge community with million of students",
+  },
+];
+
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-8 px-6 py-20">
-      <header className="flex flex-col gap-3">
-        <p className="text-sm font-medium uppercase tracking-widest text-foreground/60">
-          is-05-frontend-task
-        </p>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          AI Frontend Workflow 2026 — your turn.
-        </h1>
-        <p className="text-lg leading-7 text-foreground/70">
-          This is the homework starter. Replace this page with sections composed
-          from your own <code>components/sections</code> and{" "}
-          <code>components/ui</code>, driven by your{" "}
-          <code>docs/DESIGN.md</code> and a Figma frame referenced from{" "}
-          <code>docs/prd.md</code>.
-        </p>
-      </header>
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-md focus:left-md focus:z-50 focus:bg-primary focus:text-on-primary focus:px-md focus:py-sm focus:rounded-md text-lg-strong"
+      >
+        Skip to content
+      </a>
+      <Header />
+      <main id="main" className="flex flex-col">
+        <Reveal variant="fade">
+          <Hero />
+        </Reveal>
 
-      <section className="rounded-2xl border border-foreground/10 bg-foreground/[0.02] p-6">
-        <h2 className="text-xl font-semibold text-foreground">
-          Workshop checklist
-        </h2>
-        <ol className="mt-4 list-inside list-decimal space-y-2 text-foreground/80">
-          <li>
-            Fill <code>docs/prd.md</code> with your Figma URLs and product brief
-          </li>
-          <li>
-            Fill <code>docs/DESIGN.md</code> with the tokens extracted from
-            Figma
-          </li>
-          <li>
-            Translate the tokens into <code>app/globals.css</code> (
-            <code>:root</code> + <code>@theme inline</code>)
-          </li>
-          <li>
-            Implement <strong>≥ 3 sections</strong> as RSC components in{" "}
-            <code>components/sections/</code>
-          </li>
-          <li>
-            Add <strong>≥ 1 client component</strong> with proper a11y in{" "}
-            <code>components/ui/</code>
-          </li>
-          <li>
-            Run <code>npm run lint</code>,{" "}
-            <code>npx tsc --noEmit</code>,{" "}
-            <code>npm run build</code> — all green
-          </li>
-          <li>
-            Open a PR to <code>koldovsky/is-05-frontend-task</code> from{" "}
-            <code>frontend/&lt;your-github-username&gt;</code>
-          </li>
-        </ol>
-      </section>
+        <Reveal variant="fade-up">
+          <Features />
+        </Reveal>
 
-      <section className="flex flex-col gap-3 text-sm text-foreground/60">
-        <p>
-          Reference implementation:{" "}
-          <a
-            className="text-foreground underline"
-            href="https://github.com/koldovsky/is-05-frontend"
+        <Reveal variant="fade-up" delay={80}>
+          <PopularCourses />
+        </Reveal>
+
+        <Reveal variant="zoom">
+          <PromoBanner />
+        </Reveal>
+
+        {ALTERNATING.map((p, i) => (
+          <Reveal
+            key={p.title}
+            variant={p.imageSide === "left" ? "slide-right" : "slide-left"}
+            delay={i * 60}
           >
-            koldovsky/is-05-frontend
-          </a>
-        </p>
-        <p>
-          Slides:{" "}
-          <a
-            className="text-foreground underline"
-            href="https://koldovsky.github.io/is-05-slidev-frontend/"
-          >
-            koldovsky.github.io/is-05-slidev-frontend
-          </a>
-        </p>
-      </section>
-    </main>
+            <AlternatingFeature {...p} />
+          </Reveal>
+        ))}
+      </main>
+
+      <Reveal variant="fade-up">
+        <Footer />
+      </Reveal>
+    </>
   );
 }
