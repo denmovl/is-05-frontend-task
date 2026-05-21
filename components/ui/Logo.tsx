@@ -12,7 +12,7 @@ const sizes = {
   md: { mark: 36, text: "text-h3" },
 } as const;
 
-export function Logo({ className, size = "md", label = "tian" }: LogoProps) {
+export function Logo({ className, size = "md", label = "Rolando" }: LogoProps) {
   const s = sizes[size];
   return (
     <span
@@ -38,7 +38,7 @@ export function Logo({ className, size = "md", label = "tian" }: LogoProps) {
         )}
         aria-hidden="true"
       >
-        tian
+        Rolando
       </span>
     </span>
   );

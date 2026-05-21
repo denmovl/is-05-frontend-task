@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 
 const NAV = [
@@ -64,9 +63,13 @@ export function MobileNav() {
             </a>
           ))}
         </nav>
-        <Button variant="primary" size="lg" onClick={() => setOpen(false)}>
-          <a href="#contact">Contact Us</a>
-        </Button>
+        <a
+          href="#contact"
+          onClick={() => setOpen(false)}
+          className="inline-flex h-[52px] min-w-[52px] items-center justify-center rounded-md bg-primary px-xl py-md font-sans text-lg-strong text-on-primary transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          Contact Us
+        </a>
       </div>
     </>
   );
